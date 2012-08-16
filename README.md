@@ -4,13 +4,12 @@ Randomly generates User-Agent strings based on actual usage statistics from Wiki
 
 Caveats
 -------
----
 The version numbers generated are sane, however, revisions are totally random and unlikely to exist in the wild.
 
 Usage
 -----
----
-````var random_ua = require('random_ua');
+```js
+var random_ua = require('random_ua');
 
 console.log(random_ua());
 //Easy like Sunday morning

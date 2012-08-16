@@ -9,13 +9,13 @@ The version numbers generated are sane, however, revisions are totally random an
 Usage
 -----
 ```js
-var random_ua = require('random_ua');
+var random_ua = require('random_ua'),
+    http = require('http');
 
 console.log(random_ua());
 //Easy like Sunday morning
 
 //use random_ua to generate a random User-Agent for an HTTP request
-var http = require('http');
 
 http.get({
         host:'whatsmyuseragent.com',

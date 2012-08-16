@@ -1,0 +1,33 @@
+{
+    "name": "random-ua",
+    "version": "0.0.1",
+    "main":"./random_ua.js",
+    "description": "Randomly generates User-Agent strings based on actual usage statistics from Wikipedia and StatOwl.com as of July 2012.",
+    "keywords": [
+        "user",
+        "agent",
+        "browser",
+        "user-agent",
+        "http",
+        "random"
+    ],
+    "author": {
+        "name": "Jeffrey Mealo",
+        "email": "jeffreymealo@gmail.com",
+        "web": "http://www.jeffreymealo.com"
+    },
+    "license": {
+        "type": "MIT"
+    },
+    "repository": {
+        "type": "git",
+        "url": "http://github.com/jmealo/node-random-ua.git"
+    },
+    "directories": {
+        "examples": "examples",
+        "test": "test"
+    },
+    "engines": {
+        "node": "*"
+    }
+}

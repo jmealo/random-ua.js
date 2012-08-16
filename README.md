@@ -17,11 +17,19 @@ console.log(random_ua());
 
 //use random_ua to generate a random User-Agent for an HTTP request
 
+var random_ua = require('random-ua'),
+    http = require('http');
+
+console.log(random_ua.generate());
+//Easy like Sunday morning
+
+//use random_ua to generate a random User-Agent for an HTTP request
+
 http.get({
         host:'whatsmyuseragent.com',
         path:'/',
         headers:{
-            'User-Agent':random_ua()
+            'User-Agent':random_ua.generate()
         }
     },
     function (res) {

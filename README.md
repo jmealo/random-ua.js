@@ -1,10 +1,13 @@
-Node.js Random User Agent Generator
-===================================
+random-ua.js - A random User-Agent Generator
+============================================
 Randomly generates User-Agent strings based on actual usage statistics from Wikipedia and StatOwl.com as of July 2012.
 
 Caveats
 -------
 The version numbers generated are sane, however, revisions are totally random and unlikely to exist in the wild.
+
+I decided not to include language selection found in the PHP version and instead include all the languages in the
+[ISO639-2](http://www.loc.gov/standards/iso639-2/) standard because it's atypical for sites to determine client locale based on the user-agent.
 
 Usage
 -----
@@ -52,11 +55,7 @@ http.get({
 
 Options
 -------
-Please send your suggestions; I didn't need any options.
-
-I decided not to include language selection found in the PHP version and instead include all the languages in the
-[ISO639-2](http://www.loc.gov/standards/iso639-2/) standard because no sane site should use the User-Agent string
-to determine client locale.
+Please send your suggestions for improvements or updates.
 
 Based Upon
 ----------

@@ -12,21 +12,14 @@ I decided not to include language selection found in the PHP version and instead
 Usage
 -----
 ```js
-var random_ua = require('random_ua'),
-    http = require('http');
+var random_ua = require('random_ua');
 
 console.log(random_ua());
 //Easy like Sunday morning
 
-//use random_ua to generate a random User-Agent for an HTTP request
+//You can easily use random_ua to generate a random User-Agent for an HTTP request:
 
-var random_ua = require('random-ua'),
-    http = require('http');
-
-console.log(random_ua.generate());
-//Easy like Sunday morning
-
-//use random_ua to generate a random User-Agent for an HTTP request
+var http = require('http');
 
 http.get({
         host:'whatsmyuseragent.com',

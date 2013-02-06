@@ -2,17 +2,13 @@ function randomBrowserAndOS() {
     var browser, os, rand = Math.floor(Math.random() * 101);
 
     //Randomly select a browser according to usage statistics
-    if (rand <= 34) {
-        browser = 'chrome';
-    } else if (rand <= 62 && rand > 34) {
-        return ['iexplorer', 'win']; //we don't need to randomly choose an O/S for IE...
-    } else if (rand <= 87 && rand > 62) {
-        browser = 'firefox';
-    } else if (rand <= 94 && rand > 87) {
-        browser = 'safari';
-    } else {
-        browser = 'opera';
-    }
+
+    browser = (rand <= 34) ? 'chrome'
+            : (rand <= 87 && rand > 62) ? 'firefox'
+            : (rand <= 94 && rand > 87) ? 'safari'
+            : 'opera';
+
+    if(rand <= 62 && rand > 34) return ['iexplorer', 'win']; //Skip IE:Mac
 
     rand = Math.floor(Math.random() * 101);
 
@@ -20,37 +16,33 @@ function randomBrowserAndOS() {
 
     //randomly choose an O/S the browser runs on according to usage stats
     var browser_os = {
-        'chrome':[89, 9, 2],
-        'firefox':[83, 16, 1],
-        'safari':[4, 96],
-        'opera':[91, 3, 6]
+        chrome: [89, 9 , 2],
+        firefox:[83, 16, 1],
+        safari: [4 , 96],
+        opera:  [91, 3 , 6]
     }
 
     var os_freq = browser_os[browser];
 
-    if (rand <= os_freq[0]) {
-        os = os_list[0];
-    } else if (rand <= os_freq[1] + os_freq[0]) {
-        os = os_list[1];
-    } else {
-        os = os_list[2];
-    }
+    os = (rand <= os_freq[0]) ? os_list[0]
+       : (rand <= os_freq[1] + os_freq[0]) ?os_list[1]
+       : os_list[2];
 
     return [browser, os];
 }
 
-function getRandomInt(min, max) {
+function randomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 function randomLang() {
     var languages = ['AB', 'AF', 'AN', 'AR', 'AS', 'AZ', 'BE', 'BG', 'BN', 'BO', 'BR', 'BS', 'CA', 'CE', 'CO', 'CS',
-        'CU', 'CY', 'DA', 'DE', 'EL', 'EN', 'EO', 'ES', 'ET', 'EU', 'FA', 'FI', 'FJ', 'FO', 'FR', 'FY',
-        'GA', 'GD', 'GL', 'GV', 'HE', 'HI', 'HR', 'HT', 'HU', 'HY', 'ID', 'IS', 'IT', 'JA', 'JV', 'KA',
-        'KG', 'KO', 'KU', 'KW', 'KY', 'LA', 'LB', 'LI', 'LN', 'LT', 'LV', 'MG', 'MK', 'MN', 'MO', 'MS',
-        'MT', 'MY', 'NB', 'NE', 'NL', 'NN', 'NO', 'OC', 'PL', 'PT', 'RM', 'RO', 'RU', 'SC', 'SE', 'SK',
-        'SL', 'SO', 'SQ', 'SR', 'SV', 'SW', 'TK', 'TR', 'TY', 'UK', 'UR', 'UZ', 'VI', 'VO', 'YI', 'ZH'];
-    return languages[getRandomInt(0, 95)];
+                     'CU', 'CY', 'DA', 'DE', 'EL', 'EN', 'EO', 'ES', 'ET', 'EU', 'FA', 'FI', 'FJ', 'FO', 'FR', 'FY',
+                     'GA', 'GD', 'GL', 'GV', 'HE', 'HI', 'HR', 'HT', 'HU', 'HY', 'ID', 'IS', 'IT', 'JA', 'JV', 'KA',
+                     'KG', 'KO', 'KU', 'KW', 'KY', 'LA', 'LB', 'LI', 'LN', 'LT', 'LV', 'MG', 'MK', 'MN', 'MO', 'MS',
+                     'MT', 'MY', 'NB', 'NE', 'NL', 'NN', 'NO', 'OC', 'PL', 'PT', 'RM', 'RO', 'RU', 'SC', 'SE', 'SK',
+                     'SL', 'SO', 'SQ', 'SR', 'SV', 'SW', 'TK', 'TR', 'TY', 'UK', 'UR', 'UZ', 'VI', 'VO', 'YI', 'ZH'];
+    return languages[randomInt(0, 95)];
 }
 
 function randomProc(arch) {
@@ -58,128 +50,103 @@ function randomProc(arch) {
         lin:['i686', 'x86_64'],
         mac:['Intel', 'PPC', 'U; Intel', 'U; PPC'],
         win:['', 'WOW64', 'Win64; x64']
-    };
+    }
     return getRandom(procs[arch]);
 }
 
 function getRandom(arr) {
-    return arr[getRandomInt(0, arr.length - 1)];
+    return arr[randomInt(0, arr.length - 1)];
 }
 
-function random_revision(dots) {
+function randomRevision(dots) {
     var return_val = '';
-    //generate a random revision, if passed 2, return value will be .0.1 with 0 and 1 being random numbers betweeen 1-9
+    //generate a random revision
+    //dots = 2 returns .x.y where x & y are between 0 and 9
     for (var x = 0; x < dots; x++) {
-        return_val += '.' + getRandomInt(0, 9);
+        return_val += '.' + randomInt(0, 9);
     }
     return return_val;
 }
 
 var version_string = {
-    net:function () {
-        return getRandomInt(1, 4) + '.' + getRandomInt(0, 9) + '.' + getRandomInt(10000, 99999) + '.' + getRandomInt(0, 9);
+    net: function () {
+        return [randomInt(1, 4), randomInt(0, 9), randomInt(10000, 99999), randomInt(0, 9)].join('.');
     },
-    nt:function () {
-        return getRandomInt(5, 6) + '.' + getRandomInt(0, 2);
+    nt: function () {
+        return randomInt(5, 6) + '.' + randomInt(0, 2);
     },
-    ie:function () {
-        return getRandomInt(7, 10) + '.0';
+    ie: function () {
+        return randomInt(7, 10) + '.0';
     },
-    trident:function () {
-        return getRandomInt(3, 5) + '.' + getRandomInt(0, 1);
+    trident: function () {
+        return randomInt(3, 5) + '.' + randomInt(0, 1);
     },
-    osx:function (delim) {
-        if (delim === undefined) {
-            delim = '.';
-        }
-        return '10' + delim + getRandomInt(5, 8) + delim + getRandomInt(0, 9);
+    osx: function (delim) {
+        return [10, randomInt(5, 8), randomInt(0, 9)].join(delim || '.');
     },
-    chrome:function () {
-        return getRandomInt(13, 15) + '.0.' + getRandomInt(800, 899) + '.0';
+    chrome: function () {
+        return [randomInt(13, 15), 0, randomInt(800, 899), 0].join('.');
     },
-    presto:function () {
-        return '2.9.' + getRandomInt(160, 190);
+    presto: function () {
+        return '2.9.' + randomInt(160, 190);
     },
-    presto2:function () {
-        return getRandomInt(10, 12) + '.00';
+    presto2: function () {
+        return randomInt(10, 12) + '.00';
     }
 }
 
 var browser = {
-    firefox:function firefox(arch) {
+    firefox: function firefox(arch) {
         //https://developer.mozilla.org/en-US/docs/Gecko_user_agent_string_reference
-        var firefox_ver = getRandomInt(5, 15) + random_revision(2);
+        var firefox_ver = randomInt(5, 15) + randomRevision(2);
 
         var gecko_ver = 'Gecko/20100101 Firefox/' + firefox_ver;
 
-        var os_ver = '';
-        if (arch == 'win') {
-            var proc = randomProc(arch);
-            os_ver = '(Windows NT ' + version_string.nt() + ((proc !== '') ? '; ' + proc : '') + '; ';
-        } else if (arch == 'mac') {
-            os_ver = '(Macintosh; ' + randomProc(arch) + ' Mac OS X ' + version_string.osx();
-        } else {
-            os_ver = '(X11; Linux ' + randomProc(arch);
-        }
+        var proc = randomProc(arch), os_ver = '';
+
+        os_ver = (arch === 'win') ? '(Windows NT ' + version_string.nt() + ((proc) ? '; ' + proc : '') 
+               : (arch === 'mac') ? '(Macintosh; ' + proc + ' Mac OS X ' + version_string.osx()
+               : '(X11; Linux ' + proc;
 
         return 'Mozilla/5.0 ' + os_ver + '; rv:' + firefox_ver.slice(0, -2) + ') ' + gecko_ver;
     },
 
-    iexplorer:function iexplorer() {
+    iexplorer: function iexplorer() {
         return 'Mozilla/5.0 (compatible; MSIE ' + version_string.ie() + '; Windows NT ' + version_string.nt() + '; Trident/' +
-            version_string.trident() + ((getRandomInt(0, 1) == 1) ? '; .NET CLR ' + version_string.net() : '') + ')';
+            version_string.trident() + ((randomInt(0, 1) === 1) ? '; .NET CLR ' + version_string.net() : '') + ')';
     },
 
     opera:function opera(arch) {
-
         var presto_ver = ' Presto/' + version_string.presto() + ' Version/' + version_string.presto2() + ')';
-        var os_ver = '';
 
-        if (arch == 'win') {
-            os_ver = '(Windows NT ' + version_string.nt() + '; U; ' + randomLang() + presto_ver;
-        } else if (arch == 'lin') {
-            os_ver = '(X11; Linux ' + randomProc('lin') + '; U; ' + randomLang() + presto_ver;
-        } else {
-            os_ver = '(Macintosh; Intel Mac OS X ' + version_string.osx() + ' U; ' + randomLang() + ' Presto/' +
-                version_string.presto() + ' Version/' + version_string.presto2() + ')';
+        var os_ver = (arch === 'win') ? '(Windows NT ' + version_string.nt() + '; U; ' + randomLang() + presto_ver 
+                   : (arch === 'lin') ? '(X11; Linux ' + randomProc(arch) + '; U; ' + randomLang() + presto_ver
+                   : '(Macintosh; Intel Mac OS X ' + version_string.osx() + ' U; ' + randomLang() + ' Presto/' +
+                      version_string.presto() + ' Version/' + version_string.presto2() + ')';
 
-        }
-        return 'Opera/' + getRandomInt(9, 12) + '.' + getRandomInt(0, 99) + ' ' + os_ver;
+        return 'Opera/' + randomInt(9, 12) + '.' + randomInt(0, 99) + ' ' + os_ver;
     },
 
     safari:function safari(arch) {
-        var safari = getRandomInt(531, 536) + '.' + getRandomInt(1, 50) + '.' + getRandomInt(1, 7);
-        var ver = getRandomInt(4, 5) + '.' + (getRandomInt(0, 1) == 0) ? '0.' + getRandomInt(1, 5) : getRandomInt(0, 1);
+        var safari = randomInt(531, 536) + '.' + randomInt(1, 50) + '.' + randomInt(1, 7);
+        var ver = randomInt(4, 5) + '.' + (randomInt(0, 1) === 0) ? '0.' + randomInt(1, 5) : randomInt(0, 1);
 
-        var os_ver = '';
-
-        if (arch == 'mac') {
-            os_ver = '(Macintosh; ' + randomProc('mac') + ' Mac OS X ' + version_string.osx('_') + ' rv:' +
-                getRandomInt(2, 6) + '.0; ' + randomLang() + ') ';
-        } else {
-            os_ver = '(Windows; U; Windows NT ' + version_string.nt() + ')';
-        }
+        var os_ver = (arch === 'mac') ? '(Macintosh; ' + randomProc('mac') + ' Mac OS X '+ version_string.osx('_') + ' rv:' + randomInt(2, 6) + '.0; '+ randomLang() + ') '
+                   : '(Windows; U; Windows NT ' + version_string.nt() + ')';
 
         return 'Mozilla/5.0 ' + os_ver + 'AppleWebKit/' + safari + ' (KHTML, like Gecko) Version/' + ver + ' Safari/' + safari;
     },
 
     chrome:function chrome(arch) {
 
-        var safari = getRandomInt(531, 536) + '.' + getRandomInt(0, 2);
-        var ver = getRandomInt(4, 5) + '.' + (getRandomInt(0, 1) == 0) ? '0.' + getRandomInt(1, 5) : getRandomInt(0, 1);
+        var safari = randomInt(531, 536) + '.' + randomInt(0, 2);
+        var ver = randomInt(4, 5) + '.' + (randomInt(0, 1) === 0) ? '0.' + randomInt(1, 5) : randomInt(0, 1);
 
-        var os_ver = '';
+        os_ver = (arch === 'mac') ? '(Macintosh; ' + randomProc('mac') + ' Mac OS X ' + version_string.osx('_') + ') '
+               : (arch === 'win') ? '(Windows; U; Windows NT ' + version_string.nt() + ')'
+               : '(X11; Linux ' + randomProc(arch);
 
-        if (arch == 'mac') {
-            os_ver = '(Macintosh; ' + randomProc('mac') + ' Mac OS X ' + version_string.osx('_') + ') ';
-        } else if (arch == 'win') {
-            os_ver = '(Windows; U; Windows NT ' + version_string.nt() + ')';
-        } else {
-            os_ver = '(X11; Linux ' + randomProc('lin');
-        }
-
-        return 'Mozilla/5.0 ' + os_ver + ' AppleWebKit/' + safari + ' (KHTML, like Gecko) Chrome/' +
-            version_string.chrome() + ' Safari/' + safari;
+        return 'Mozilla/5.0 ' + os_ver + ' AppleWebKit/' + safari + ' (KHTML, like Gecko) Chrome/' + version_string.chrome() + ' Safari/' + safari;
     }}
 
 exports.generate = function generate() {

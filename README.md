@@ -12,7 +12,7 @@ I decided not to include language selection found in the PHP version and instead
 Usage
 -----
 ```js
-var random_ua = require('random_ua');
+var random_ua = require('random-ua');
 
 console.log(random_ua.generate());
 //Easy like Sunday morning
@@ -44,7 +44,7 @@ http.get({
         }
     }
 );
-````
+```
 
 Options
 -------

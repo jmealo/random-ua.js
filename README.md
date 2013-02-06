@@ -14,7 +14,7 @@ Usage
 ```js
 var random_ua = require('random_ua');
 
-console.log(random_ua());
+console.log(random_ua.generate());
 //Easy like Sunday morning
 
 //You can easily use random_ua to generate a random User-Agent for an HTTP request:

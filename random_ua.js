@@ -142,9 +142,9 @@ var browser = {
         var safari = randomInt(531, 536) + '.' + randomInt(0, 2);
         var ver = randomInt(4, 5) + '.' + (randomInt(0, 1) === 0) ? '0.' + randomInt(1, 5) : randomInt(0, 1);
 
-        os_ver = (arch === 'mac') ? '(Macintosh; ' + randomProc('mac') + ' Mac OS X ' + version_string.osx('_') + ') '
-               : (arch === 'win') ? '(Windows; U; Windows NT ' + version_string.nt() + ')'
-               : '(X11; Linux ' + randomProc(arch);
+        var os_ver = (arch === 'mac') ? '(Macintosh; ' + randomProc('mac') + ' Mac OS X ' + version_string.osx('_') + ') '
+                   : (arch === 'win') ? '(Windows; U; Windows NT ' + version_string.nt() + ')'
+                   : '(X11; Linux ' + randomProc(arch);
 
         return 'Mozilla/5.0 ' + os_ver + ' AppleWebKit/' + safari + ' (KHTML, like Gecko) Chrome/' + version_string.chrome() + ' Safari/' + safari;
     }}

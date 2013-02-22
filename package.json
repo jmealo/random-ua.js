@@ -1,6 +1,6 @@
 {
     "name": "random-ua",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "main":"./random_ua.js",
     "description": "Randomly generates User-Agent strings based on actual usage statistics from Wikipedia and StatOwl.com as of July 2012.",
     "keywords": [

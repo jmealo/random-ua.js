@@ -1,6 +1,6 @@
 random-ua.js - A random User-Agent Generator
 ============================================
-Randomly generates User-Agent strings based on actual usage statistics from Wikipedia and StatOwl.com as of July 2012.
+Randomly generates User-Agent strings based on actual usage statistics as of July 2013.
 
 Caveats
 -------

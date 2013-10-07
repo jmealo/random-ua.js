@@ -60,3 +60,7 @@ https://raw.github.com/mwhite/random-uagent/
 License
 -------
 MIT License
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/jmealo/random-ua.js/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+

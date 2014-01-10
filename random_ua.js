@@ -1,9 +1,7 @@
 function rnd(a, b) {
     //calling rnd() with no arguments is identical to rnd(0, 100)
-    if(a === undefined) {
-        a = 0;
-        b = 100;
-    }
+    a = a | 0;
+    b = b | 100;
 
     if (typeof b === 'number' && typeof a === 'number') {
         //rnd(int min, int max) returns integer between min, max

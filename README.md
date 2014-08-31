@@ -1,6 +1,6 @@
 random-ua.js - A random User-Agent Generator
 ============================================
-Randomly generates User-Agent strings based on actual usage statistics as of July 2013.
+Randomly generates User-Agent strings based on actual browser market share and usage statistics.
 
 Caveats
 -------
@@ -60,7 +60,3 @@ https://raw.github.com/mwhite/random-uagent/
 License
 -------
 MIT License
-
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/jmealo/random-ua.js/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-
